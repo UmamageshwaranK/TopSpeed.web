@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TopSpeed.Web.Models;
 
 namespace TopSpeed.Web.Data
 {
@@ -9,6 +10,7 @@ namespace TopSpeed.Web.Data
 
 
             }
+        public DbSet<Brand> Brand { get; set; }  // Its a Table name of the data base
 
     }
 }
