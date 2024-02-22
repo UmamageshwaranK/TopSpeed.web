@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OpenXmlPowerTools;
 using TopSpeed.Web.Data;
 using TopSpeed.Web.Models;
 
@@ -62,6 +63,12 @@ namespace TopSpeed.Web.Controllers
                 
             }
             return View();
+        }
+        [HttpGet]
+        public IActionResult  Details(int id)
+        {
+            Brand brand = _dbContext.Brand.FirstOrDefault(x => x.ID == id); // check the database id and Details page ID if its true get the coorect the details
+            return View(brand);
         }
     }
 }

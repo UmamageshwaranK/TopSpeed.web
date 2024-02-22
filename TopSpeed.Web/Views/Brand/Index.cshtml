@@ -25,6 +25,12 @@
                     <tr>
                         <td>@items.Name</td>
                         <td>@items.Established</td>
+                        <td class="d-flex align-items-center justify-content-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Brand" asp-action="Details" asp-route-id="@items.ID" class="btn btn-info" data-toggle="tooltip"
+                                   data-placement="top" title="Details"><i class="bi bg-info-circle "></i>Details</a>
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -41,4 +47,4 @@
             </div>
         </div>
     }
-    </div>
+</div>
