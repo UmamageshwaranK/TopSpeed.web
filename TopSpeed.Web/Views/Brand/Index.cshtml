@@ -1,0 +1,44 @@
+﻿<!-- Its an Index.html for an brand Html view-->
+@model List<Brand>
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6  text-uppercase">
+            <h2> Brand Lists</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-controller="Brand" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i>Create</a>
+        </div>
+    </div>
+    <hr />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Established Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var items in Model)
+                {
+                    <tr>
+                        <td>@items.Name</td>
+                        <td>@items.Established</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row text-center">
+                <!-- It means col-md-12 takes when its came breakpoints it tooks 100% of width  -->
+                <div class="col-md-12">
+                    <h2 class="text-uppercase pt-4">No data available</h2>
+                </div>
+            </div>
+        </div>
+    }
+    </div>

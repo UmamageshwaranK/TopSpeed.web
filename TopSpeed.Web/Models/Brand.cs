@@ -9,7 +9,7 @@ namespace TopSpeed.Web.Models
         public int ID { get; set; }
         [Required]
         public string Name { get; set;}
-
+        [Display(Name = "Established Year")]
         public int Established { get; set; }
 
         public string BrandLogo { get; set;  }
