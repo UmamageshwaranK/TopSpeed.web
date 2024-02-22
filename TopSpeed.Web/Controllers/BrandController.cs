@@ -32,8 +32,28 @@ namespace TopSpeed.Web.Controllers
         [HttpPost]
         public IActionResult Create(Brand brand)
         {
+            string webRootPath = _environment.WebRootPath; // Get the web path using webHost interface
+
+            var file = HttpContext.Request.Form.Files;   // get the url and come with a request that request had a form that forms have whatever files we grab it
+
             
-            if(ModelState.IsValid)
+            if (file.Count > 0)
+            {
+                string newfilename = Guid.NewGuid().ToString();  //  Its give Globally Unique idenfier for our image .  Guid => Its an Object its convert to string
+                  
+                var upload = Path.Combine(webRootPath, @"images\brand" );  // Its combine two path
+
+                var extension = Path.GetExtension(file[0].FileName);  // Get Extension
+
+                using(var filestream = new FileStream(Path.Combine(upload,newfilename+extension),FileMode.Create))  
+                {
+                    file[0].CopyTo(filestream);
+                }
+                brand.BrandLogo = @"\images\brand\" + newfilename + extension;
+
+            }
+
+                if (ModelState.IsValid)
             {
                 _dbContext.Brand.Add(brand);
                 _dbContext.SaveChanges();
