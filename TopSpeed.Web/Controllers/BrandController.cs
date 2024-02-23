@@ -70,5 +70,23 @@ namespace TopSpeed.Web.Controllers
             Brand brand = _dbContext.Brand.FirstOrDefault(x => x.ID == id); // check the database id and Details page ID if its true get the coorect the details
             return View(brand);
         }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Brand brand = _dbContext.Brand.FirstOrDefault(x => x.ID == id); // check the database id and Details page ID if its true get the coorect the details
+            return View(brand);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Brand brand)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbContext.Brand.Update(brand);      // Its an inbuild method its give an entity framework core given the method
+                _dbContext.SaveChanges();  // Its Save Changes
+                return RedirectToAction(nameof(Index));   // Its an redirect page  to index page
+            }
+            return View();   
+        }
     }
 }

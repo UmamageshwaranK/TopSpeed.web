@@ -30,6 +30,14 @@
                                 <a asp-controller="Brand" asp-action="Details" asp-route-id="@items.ID" class="btn btn-info" data-toggle="tooltip"
                                    data-placement="top" title="Details"><i class="bi bg-info-circle "></i>Details</a>
                             </div>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Brand" asp-action="Edit" asp-route-id="@items.ID" class="btn btn-primary" data-toggle="tooltip"
+                                   data-placement="top" title="Edit"><i class="bi bg-info-circle "></i>Edit</a>
+                            </div>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Brand" asp-action="Delete" asp-route-id="@items.ID" class="btn btn-warning" data-toggle="tooltip"
+                                   data-placement="top" title="Delete"><i class="bi bg-info-circle "></i>Delete</a>
+                            </div>
                         </td>
                     </tr>
                 }
