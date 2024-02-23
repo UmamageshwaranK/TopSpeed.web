@@ -138,6 +138,40 @@ namespace TopSpeed.Web.Controllers
                 return RedirectToAction(nameof(Index));   // Its an redirect page  to index page
             }
             return View();   
+
+        }
+        [HttpDelete]
+
+        [HttpGet]  // show the Edit page
+        public IActionResult Delete(int id)  // First view show  the page
+        {
+            Brand brand = _dbContext.Brand.FirstOrDefault(x => x.ID == id); // check the database id and Details page ID if its true get the coorect the details
+            return View(brand);
+        }
+        [HttpPost]
+        public IActionResult Delete(Brand brand)
+        {
+            string webRootPath = _environment.WebRootPath; // Get the web path using webHost interface
+
+            if(!string.IsNullOrEmpty(webRootPath))
+            {
+                // Delete Old Image
+
+                var objFromDb = _dbContext.Brand.AsNoTracking().FirstOrDefault(x => x.ID == brand.ID);
+                if (objFromDb.BrandLogo != null)
+                {
+                    var oldImagePath = Path.Combine(webRootPath, objFromDb.BrandLogo.Trim('\\'));     // Remove  \\ form the database  path of image
+
+                    if (System.IO.File.Exists(oldImagePath))   // If any iamge my path 
+                    {
+                        System.IO.File.Delete(oldImagePath);   // Deleted
+                    }
+
+                }
+            }
+            _dbContext.Brand.Remove(brand);
+            _dbContext.SaveChanges();
+            return RedirectToAction(nameof(Index));      // This return way
         }
     }
 }
