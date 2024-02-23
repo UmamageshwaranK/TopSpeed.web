@@ -63,6 +63,8 @@ namespace TopSpeed.Web.Controllers
                 _dbContext.Brand.Add(brand);   // its going in dbContext   and then add the  Brand tables
                 _dbContext.SaveChanges();       // and then  its savethe databases
 
+                TempData["success"] = "Recorded Created SuccessFully";   // Its  an Temdata    TempData is a temprory storage data its a key and pair   its like a variable
+
                 return RedirectToAction(nameof(Index));   // Its Condititon true Redirect page  to index
                 
             }
@@ -135,6 +137,7 @@ namespace TopSpeed.Web.Controllers
 
                 _dbContext.Brand.Update(objFromDb);      // Its an inbuild method its give an entity framework core given the method
                 _dbContext.SaveChanges();  // Its Save Changes
+                TempData["warning"] = "Updated Successfully";
                 return RedirectToAction(nameof(Index));   // Its an redirect page  to index page
             }
             return View();   
@@ -171,6 +174,7 @@ namespace TopSpeed.Web.Controllers
             }
             _dbContext.Brand.Remove(brand);
             _dbContext.SaveChanges();
+            TempData["error"] = "Deleted successfully";
             return RedirectToAction(nameof(Index));      // This return way
         }
     }
